@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
+import * as Actions from '../Actions'
+import CounterStore from '../stores/CounterStore'
+
 const buttonStyle = {
     margin: '10px'
 }
@@ -8,31 +11,38 @@ const buttonStyle = {
 class Counter extends Component {
     constructor(props) {
         super(props)
+        this.onChange = this.onChange.bind(this)
         this.onClickIncrementButton = this.onClickIncrementButton.bind(this)
         this.onClickDecrementButton = this.onClickDecrementButton.bind(this)
+
         this.state = {
-            count: props.initValue
+            count: CounterStore.getCounterValues()[props.caption]
         }
     }
-    updateCount(isIncrement) {
-        const previousValue = this.state.count
-        const newValue = isIncrement ? previousValue + 1 : previousValue - 1
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextProps.caption !== this.props.caption) ||
+                (nextState.count !== this.state.count)
+    }
+    componentDidMount() {
+        CounterStore.addChangeListener(this.onChange)
+    }
+    componentWillUnmount() {
+        CounterStore.removeChangeListener(this.onChange)
+    }
+    onChange() {
+        const newCount = CounterStore.getCounterValues()[this.props.caption]
         this.setState({
-            count: newValue
+            count: newCount
         })
-        this.props.onUpdate(newValue, previousValue)
     }
     onClickIncrementButton() {
-        this.updateCount(true)
+        Actions.increment(this.props.caption)
     }
     onClickDecrementButton() {
-        this.updateCount(false)
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.caption !== this.props.caption) || (nextState.count !== this.state.count)
+        Actions.decrement(this.props.caption)
     }
     render() {
-        const {caption}  = this.props
+        const {caption} = this.props
         return (
             <div>
                 <button style={buttonStyle} onClick={this.onClickIncrementButton}>+</button>
@@ -44,14 +54,7 @@ class Counter extends Component {
 }
 
 Counter.propTypes = {
-    caption: PropTypes.string.isRequired,
-    initValue: PropTypes.number,
-    onUpdate: PropTypes.func
-}
-
-Counter.defaultProps = {
-    initValue: 0,
-    onUpdate: f => f //默认是一个什么都不做的函数
+    caption: PropTypes.string.isRequired
 }
 
 export default Counter
