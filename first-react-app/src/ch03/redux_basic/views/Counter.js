@@ -40,7 +40,7 @@ class Counter extends Component {
     store.subscribe(this.onChange)
   }
   componentWillUnmount() {
-    store.subscribe(this.onChange)
+    store.unsubscribe(this.onChange)
   }
   render() {
     const value = this.state.value
