@@ -8,10 +8,11 @@ import './index.css';
 // import MyRef from './ch03/my_ref/MyRef';
 // import MyTodo from './ch03/my_todo/MyTodo';
 // import MyForm from './ch03/my_form/MyForm';
-import LifeCycle from './ch03/My_lifecycle/LifeCycle';
+// import LifeCycle from './ch03/My_lifecycle/LifeCycle';
+import App from './ch03/my_comment/comment-app';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<LifeCycle msg='react 你好' />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
