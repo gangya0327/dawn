@@ -9,10 +9,13 @@ import './index.css';
 // import MyTodo from './ch03/my_todo/MyTodo';
 // import MyForm from './ch03/my_form/MyForm';
 // import LifeCycle from './ch03/My_lifecycle/LifeCycle';
-import App from './ch03/my_comment/comment-app';
+// import App from './ch03/my_comment/comment-app';
+// import MostStarRepo from './ch03/my_axios/MostStarRepo';
+// import SearchApp from './ch03/my_search/search-app';
+import SearchApp from './ch03/my_search2/search-app';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<SearchApp />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
