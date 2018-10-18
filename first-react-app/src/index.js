@@ -15,7 +15,9 @@ import './index.css';
 // import SearchApp from './ch03/my_search2/search-app';
 // import ControlPanel from './ch03/redux_smart_dumb/view/ControlPanel';
 // import App from './ch03/redux_with_context/App';
-import App from './ch03/react-redux/App';
+// import App from './ch03/react-redux/App';
+// import SearchApp from './ch03/my_search3/search-app';
+import App from './ch03/my_comment2/comment-app';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
