@@ -20,6 +20,18 @@ export default class News extends Component {
             this.setState({messages})
         }, 1000)
     }
+    showDetail = (id) => {
+        this.props.history.push(`/home/message/messagedetail/${id}`)
+    }
+    showDetail2 = (id) => {
+        this.props.history.replace(`/home/message/messagedetail/${id}`)
+    }
+    goForward = () => {
+        this.props.history.goForward()
+    }
+    goBack = () => {
+        this.props.history.goBack()
+    }
     render() {
         return (
             <div>
@@ -30,11 +42,15 @@ export default class News extends Component {
                                 <li key={index}>
                                     <NavLink to={`/home/message/messagedetail/${m.id}`}>{m.title}</NavLink>
                                     {/* <a href={`/home/message/messagedetail/${m.id}`}>{m.title}</a> */}
+                                    &nbsp;&nbsp;<button onClick={() => {this.showDetail(m.id)}}>push() 查看消息</button>
+                                    &nbsp;&nbsp;<button onClick={() => {this.showDetail2(m.id)}}>replace() 查看消息</button>
                                 </li>
                             )
                         })
                     }
                 </ul>
+                <button onClick={this.goBack}>后退</button>&nbsp;
+                <button onClick={this.goForward}>前进</button>
                 <Route path='/home/message/messagedetail/:id' component={MessageDetail}></Route>
             </div>
         )

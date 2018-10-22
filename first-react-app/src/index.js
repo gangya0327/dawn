@@ -18,8 +18,8 @@ import './index.css';
 // import App from './ch03/react-redux/App';
 // import SearchApp from './ch03/my_search3/search-app';
 // import App from './ch03/my_comment2/comment-app';
-import App from './ch03/my_router/router-app';
-// import App from './ch03/my_antd_ui/components/app';
+// import App from './ch03/my_router/router-app';
+import App from './ch03/my_antd_ui/components/app';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
