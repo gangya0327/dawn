@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux'
 
-import App from './comment/comment-app'
+import App from './containers/comment-app'
+import store from './redux/store'
 
 ReactDOM.render(
-    <App/>,
+    <Provider store={store}>
+        <App/>
+    </Provider>,
     document.getElementById('root')
 );
 

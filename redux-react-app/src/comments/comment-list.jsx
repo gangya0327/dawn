@@ -5,10 +5,11 @@ import './comment-list.css'
 
 class CommentList extends Component {
   static propTypes = {
-    comments: PropTypes.array.isRequired
+    comments: PropTypes.array.isRequired,
+    delComment: PropTypes.func.isRequired
   }
   render() {
-    const {comments} = this.props
+    const {comments, delComment} = this.props
     const display = comments.length === 0 ? 'block' : 'none'
     return (
       <div className='col-md-8'>
@@ -18,7 +19,7 @@ class CommentList extends Component {
         {
           comments.map((comment, index) => {
             return <CommentItem comment={comment} key={index}
-              index={index}></CommentItem>
+              delComment={delComment} index={index}></CommentItem>
           })        
         }
         </ul>
