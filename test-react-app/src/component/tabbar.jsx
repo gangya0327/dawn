@@ -4,51 +4,28 @@ import './tabbar.css'
 import "./antd-mobile.min.css"
 
 export default class TabBarExample extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
       selectedTab: 'redTab',
-      hidden: false,
-      fullScreen: false,
     };
   }
 
   renderContent(pageText) {
     return (
       <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-        <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-        <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-              hidden: !this.state.hidden,
-            });
-          }}
-        >
-          Click to show/hide tab-bar
-        </a>
-        <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-              fullScreen: !this.state.fullScreen,
-            });
-          }}
-        >
-          Click to switch fullscreen
-        </a>
+        <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>     
       </div>
     );
   }
 
   render() {
     return (
-      <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 400 }}>
+      <div>
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
-          hidden={this.state.hidden}
           tabBarPosition="top"
         >
           <TabBar.Item
@@ -67,7 +44,6 @@ export default class TabBarExample extends React.Component {
             />
             }
             selected={this.state.selectedTab === 'blueTab'}
-            badge={1}
             onPress={() => {
               this.setState({
                 selectedTab: 'blueTab',
@@ -94,7 +70,6 @@ export default class TabBarExample extends React.Component {
             }
             title="Koubei"
             key="Koubei"
-            badge={'new'}
             selected={this.state.selectedTab === 'redTab'}
             onPress={() => {
               this.setState({
@@ -122,7 +97,6 @@ export default class TabBarExample extends React.Component {
             }
             title="Friend"
             key="Friend"
-            dot
             selected={this.state.selectedTab === 'greenTab'}
             onPress={() => {
               this.setState({
@@ -151,5 +125,3 @@ export default class TabBarExample extends React.Component {
     );
   }
 }
-
-// ReactDOM.render(<TabBarExample />, mountNode);
