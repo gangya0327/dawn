@@ -4,7 +4,7 @@ import { CommentItem } from './comment-item'
 export class CommentList extends Component {
     static defaultProps = {
         commments: []
-    }
+    }   
     render() {
         const {comments} = this.props
         return (

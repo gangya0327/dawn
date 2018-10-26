@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
 
 export class CommentItem extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        this.state = {
+            timeString: ''
+        }
+    }
+    componentWillMount() {
+        this._updateTimeString()
+    }
+    _updateTimeString() {
+        const comment = this.props.comment
+        console.log(comment)
+        const duration = (Date.now() - comment.creatTime)
+        console.log(comment.createdTime)
+        console.log(duration)
     }
     render() {
         const {comment} = this.props
@@ -12,6 +25,9 @@ export class CommentItem extends Component {
                     <span>{comment.username}</span>：
                 </div>
                 <p>{comment.content}</p>
+                <span className="comment-createdTime">
+                    {this.state.timeString}
+                </span>
             </div>
         )
     }

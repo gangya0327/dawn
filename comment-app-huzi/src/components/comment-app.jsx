@@ -6,17 +6,28 @@ export class App extends Component {
     constructor() {
         super()
         this.state = {
-            comments: [
-                { 'username': 'john', 'content': 'jane' },
-            ]
+            comments: []
         }
     }
+    componentWillMount () {
+         this._loadComments()
+    }    
     handleSubmit(comment) {
         if (!comment) return
         if (!comment.username) return alert('请输入用户名')
         if (!comment.content) return alert('请输入评论内容')
         this.state.comments.unshift(comment)
         this.setState(this.state)
+        this._saveComments()
+    }
+    _saveComments() {
+        localStorage.setItem('comments', JSON.stringify(this.state.comments))
+    }
+    _loadComments() {
+        let comments = JSON.parse(localStorage.getItem('comments'))
+        if(comments){
+            this.setState({comments: comments})
+        }
     }
     render() {
         return (

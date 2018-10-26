@@ -16,7 +16,7 @@ export class CommentInput extends Component {
         this.textarea.focus()
     }
     componentWillMount() {
-        this.__loadName()
+        this._loadName()
     }
     handleChangeName(event) {
         this.setState({ username: event.target.value })
@@ -25,15 +25,22 @@ export class CommentInput extends Component {
         this.setState({ content: event.target.value })
     }
     handleSubmit() {
-        this.props.onSubmit(this.state)
+        if(this.props.onSubmit) {
+            this.props.onSubmit({
+                username: this.state.username,
+                content: this.state.content,
+                createTime: new Date()
+            })
+            this.setState({content: ''})
+        }
     }
     handleBlur(event) {
-        this.__saveName(event.target.value)
+        this._saveName(event.target.value)
     }
-    __saveName(name) {
+    _saveName(name) {
         localStorage.setItem("username", name)
     }
-    __loadName() {
+    _loadName() {
         const username = localStorage.getItem('username')
         if(username){
             this.setState({username: username})
