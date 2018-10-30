@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TabBarExample from './component/listView';
+import App from './components/comment-app';
+// import PercentageApp from './components/calc'
+// import Timer from './components/timer'
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<div id="container" style={{padding: 24}}><TabBarExample /></div>, document.getElementById('root'));
+ReactDOM.render(
+    <div>
+        <App />
+    </div>, 
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
