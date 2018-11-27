@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .carousel .img-ct {
+            position: relative;
+        }
+        .carousel .img-ct li {
+            display: inline-block;
+        }
+        ul,li {
+            margin: 0;
+            padding: 0;
+        }
+        .carousel {
+            width: 300px;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        .arrow {
+            position: absolute;
+            top: 80px;
+            text-decoration: none;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #777;
+            text-align: center;
+        }
+        .arrow:hover {
+            background-color: #ccc;
+        }
+        .pre {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="img-ct">
+            <li>
+                <a href="#"><img src="img/1.jpg" height="180" width="300" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/2.jpg" height="180" width="300" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/3.jpg" height="180" width="300" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/4.jpg" height="180" width="300" /></a>
+            </li>
+        </ul>
+        <a href="#" class="pre arrow"> &lt; </a>
+        <a href="#" class="next arrow"> &gt; </a>
+        <button id="ff">ff</button>
+    </div>
+    <!-- <script src="./jquery.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var $ct = $('.img-ct'),
+                $liArr = $('.img-ct li'),
+                $pre = $('.pre'),
+                $next = $('.next'),
+                imgWidth = $liArr.width(),
+                imgSize = $liArr.size()
+            $ct.css('width', imgWidth * imgSize)
+
+            $next.on('click', function () {
+                $ct.animate({
+                    'left': 0 - imgWidth
+                }, function () {
+                    console.log('animate over');
+                    $ct.append($ct.children().first())
+                    $ct.css('left', 0)
+                })
+            })
+
+            $pre.on('click', function () {
+                $ct.prepend($ct.children().last())
+                $ct.css('left', 0 - imgWidth)
+                $ct.animate({
+                    'left': 0
+                })
+            })
+        })
+    </script>
+
+    <input type="file" id="up_file_change" class="up_file_input" accept="image/jpg,image/png" multiple name='upfile'/>
+
+    <button id="showImg">show img</button>
+
+    <script>
+        $("#showImg").click(function() {
+            console.log( $("#up_file_change") )
+            var img =  $("#up_file_change")
+            var imgArrList = []
+
+            img.on('change',function(){
+				//这里获取img上传的列表
+				$.each(this.files,function(){
+					if (this.size/1024/1024>2){
+						layer.alert("上传图片不能大于2M");
+					}else {
+						imgArrList.push(this);
+					}
+				});
+                console.log( imgArrList )
+			});
+        })
+
+         var img =  $("#up_file_change")
+            var imgArrList = []
+
+            img.on('change',function(){
+				//这里获取img上传的列表
+				$.each(this.files,function(){
+					if (this.size/1024/1024>2){
+						layer.alert("上传图片不能大于2M");
+					}else {
+						imgArrList.push(this);
+					}
+				});
+                console.log( imgArrList )
+			});
+    </script>
+</body>
+
+</html>
